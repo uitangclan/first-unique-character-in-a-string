@@ -1,14 +1,18 @@
 fun main() {
-    var s = charArrayOf('h','e','l','l','o')
-    reverseString(s)
+    var s = "loveleetcode"
+    firstUniqChar(s)
 }
 
-fun reverseString(s: CharArray) {
-    var left = 0
-    var right = s.size - 1
-    while (left < right) {
-        s[left] = s[right].also {s[right] = s[left]}
-        left++
-        right--
+fun firstUniqChar(str: String): Int {
+    var map = HashMap<Char, Int> ()
+    for (char in str) {
+        map.put(char, map.getOrDefault(char, 0) + 1)
     }
+    
+    for (i in str) {
+        if (map.get(i)!! == 1) {
+            return str.indexOf(i)
+        }
+    }
+    return -1
 }
